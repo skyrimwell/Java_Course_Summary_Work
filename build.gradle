@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'war'
+    id 'org.springframework.boot' version '2.4.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
 group 'org.example'
@@ -8,12 +10,30 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
     testImplementation 'junit:junit:4.11'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot', version: '2.4.4'
+    implementation 'org.junit.jupiter:junit-jupiter-api'
+    implementation 'org.mockito:mockito-junit-jupiter'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.0'
+    implementation group: 'au.com.dius.pact.consumer', name: 'junit', version: '4.2.4'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
+    compile("org.springframework.boot:spring-boot-starter-security")
+    implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.4.6'
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.4.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.2.0.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.zaxxer:HikariCP:4.0.3'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
 }
 
 test {
