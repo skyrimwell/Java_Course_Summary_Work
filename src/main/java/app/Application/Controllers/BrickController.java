@@ -18,7 +18,7 @@ public class BrickController {
         brickService.addBrick(brick);
     }
 
-    @GetMapping("/phoness")
+    @GetMapping("/bricks")
     public List<Brick> getAll() {
         return brickService.getPhones();
     }
