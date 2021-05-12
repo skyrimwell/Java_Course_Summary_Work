@@ -1,7 +1,8 @@
 package app.Application.Controllers;
 
-import app.Application.Items.Brick;
-
+import app.Application.Classes.Brick;
+import org.springframework.ui.Model;
+import app.Application.Services.UserInfo;
 import app.Application.Services.BrickService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +11,22 @@ import java.util.List;
 import java.util.UUID;
 @RestController
 public class BrickController {
-    @Autowired
+
     private BrickService brickService;
+    private UserInfo userInfo;
+    @GetMapping("/bricks/bricksave")
+    public String booksave(Model model){
+        model.addAttribute("userid", userInfo.getUserId());
+        return "bricks/saveBrick";
+    }
+
+    @GetMapping("/bricks/brickdetail")
+    public String brickdetail(@RequestParam(value = "uid") Long uid, Model model){
+        model.addAttribute("userid", userInfo.getUserId());
+        model.addAttribute("brickInfo", brickService.findBrickById(uid));
+        
+    }
+
 
     @PostMapping("/bricks")
     public void addUser(@RequestBody Brick brick) {
