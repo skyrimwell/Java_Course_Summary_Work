@@ -1,31 +1,27 @@
-package app.Application.Classes;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package app.Application.dto;
+import app.Application.Classes.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
-
-
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
-public class User implements Serializable {
-
-    @Id
+public class UserUpDto {
     private String id;
-
     private String pw;
-
     private String name;
+
     @Builder
-    public User(String id, String pw, String name){
+    public UserUpDto(String id, String pw, String name){
         this.id = id;
         this.pw = pw;
         this.name = name;
+    }
+
+    public User toEntity(){
+        return User.builder()
+                .id(id).pw(pw).name(name).build();
     }
 }

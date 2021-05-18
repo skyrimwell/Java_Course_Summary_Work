@@ -1,50 +1,70 @@
 package app.Application.Services;
-
+import  app.Application.Misc.PasswordEncoding;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import app.Application.Interfaces.CardRepository;
+import app.Application.Interfaces.UserRepository;
+import app.Application.Classes.Card;
 import org.springframework.stereotype.Service;
-
+import app.Application.dto.CardInfoDto;
 import app.Application.dto.RegisterDto;
 import app.Application.Misc.UserAlreadyExists;
 import app.Application.Classes.User;
+import app.Application.dto.UserUpDto;
+import app.Application.dto.CardInfoDto;
+import app.Application.dto.UserInDto;
+import app.Application.Services.UserInfo;
 import app.Application.Classes.UserStats;
 import app.Application.Interfaces.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService{
+public class UserService{
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final CardRepository cardRepository;
+    PasswordEncoding passwordEncoding = new PasswordEncoding();
 
-    @Transactional
-    public void addNewUser(RegisterDto request) throws UserAlreadyExists {
-        String username = request.getUsername();
-        if (userExists(username)) {
-            throw new UserAlreadyExists(username);
+    @Transactional(readOnly = true)
+    public User findUsers(UserInfo userInfo){
+        return userRepository.findById(userInfo.getUserId()).get();
+    }
+
+    @Transactional(readOnly = true)
+    public boolean findUsersById(String id) {
+        if(userRepository.findById(id).isEmpty()){
+            return false;
+        }else {
+            return true;
         }
 
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        userRepository.save(user);
     }
-
-    @Transactional(Transactional.TxType.MANDATORY)
-    public boolean userExists(String username) {
-        return userRepository.findByUsername(username).isPresent();
+    @Transactional
+    public String signup(UserUpDto userUpDto){
+        userUpDto.setPw(passwordEncoding.encode(userUpDto.getPw()));
+        return userRepository.save(userUpDto.toEntity()).getId();
     }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(
-                        () -> new UsernameNotFoundException("Пользователь не найден: " + username)
-                );
-        return new UserStats(user);
+    @Transactional(readOnly = true)
+    public boolean signin(UserInDto userInDto){
+        String dbResultPw = userRepository.getOne(userInDto.getId()).getPw();
+        String bodyResultPw = userInDto.getPw();
+        return passwordEncoding.matches(bodyResultPw, dbResultPw);
+    }
+    @Transactional(readOnly = true)
+    public List<Card> findAllCard(UserInfo usersInfo){
+        return cardRepository.findAllByUsers_Id(usersInfo.getUserId());
+    }
+    @Transactional(readOnly = true)
+    public Card findCardByCardId(String cardId){
+        return cardRepository.findById(cardId).get();
+    }
+    @Transactional
+    public String addCard(CardInfoDto cardInfoDto){
+        return cardRepository.save(cardInfoDto.toEntity()).getId();
+    }
+    @Transactional
+    public void deleteCard(String cardId) {
+        cardRepository.delete(cardRepository.findById(cardId).get());
     }
 }

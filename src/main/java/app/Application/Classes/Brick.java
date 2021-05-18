@@ -1,5 +1,6 @@
 package app.Application.Classes;
 
+import app.Application.dto.BrickUpdateCountDto;
 import app.Application.dto.BrickUpdateDto;
 import com.sun.istack.NotNull;
 import lombok.Builder;
@@ -13,11 +14,10 @@ import java.util.*;
 @Getter
 @Entity
 @NoArgsConstructor
-@Table(name = "bricks")
 public class Brick implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "uid")
+    @Column(name = "BRICK_UID")
     private UUID uid;
 
     @Column(name = "type")
@@ -34,19 +34,19 @@ public class Brick implements Serializable {
 
     @Column(name = "count")
     @NotNull
-    private int count;
+    private Long brickcount;
 
     @Column(name = "price")
     @NotNull
     private int price;
 
     @Builder
-    public Brick(UUID uid, String type, double size, String color, int count, int price) {
+    public Brick(UUID uid, String type, Double size, String color, Long count, int price) {
         this.uid = uid;
         this.type = type;
         this.size = size;
         this.color = color;
-        this.count = count;
+        this.brickcount = count;
         this.price = price;
     }
 
@@ -55,6 +55,10 @@ public class Brick implements Serializable {
         this.type = brickUpdateDTO.getType();
         this.size = brickUpdateDTO.getSize();
         this.color = brickUpdateDTO.getColor();
+    }
+
+    public void updateCount(BrickUpdateCountDto brickUpdateCountDto){
+        this.brickcount = brickUpdateCountDto.getBrickCount();
     }
 
     @Override

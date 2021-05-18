@@ -24,32 +24,27 @@ public class BrickController {
     public String brickdetail(@RequestParam(value = "uid") Long uid, Model model){
         model.addAttribute("userid", userInfo.getUserId());
         model.addAttribute("brickInfo", brickService.findBrickById(uid));
-        
+        if(userInfo.getUserId() != null){
+            if(userInfo.getUserId().equals("master")){
+                model.addAttribute("master", userInfo.getUserId());
+            }
+        }
+        if(userInfo.getUserId() == null){
+            model.addAttribute("existSession", "notExistSession");
+        }
+        return "bricks/detailBrick";
+    }
+    @GetMapping("/briks/brickupdate")
+    public String brikupdate(@RequestParam(value="uid") Long uid, Model model){
+        model.addAttribute("userid", userInfo.getUserId());
+        model.addAttribute("bookInfo", brickService.findBrickById(uid));
+        return "books/updateBook";
     }
 
-
-    @PostMapping("/bricks")
-    public void addUser(@RequestBody Brick brick) {
-        brickService.addBrick(brick);
-    }
-
-    @GetMapping("/bricks")
-    public List<Brick> getAll() {
-        return brickService.getPhones();
-    }
-
-    @DeleteMapping("/user/{id}")
-    public void delete(@PathVariable UUID id) {
-        brickService.deletePhone(id);
-    }
-
-    @GetMapping("/getPhoneByName/{firstName}")
-    public List<Brick> getByName(@PathVariable String type){
-        return brickService.getByType(type);
-    }
-
-    @GetMapping("/getPhoneByOwner/{owner}")
-    public List<Brick> getByLastName(@PathVariable double size){
-        return brickService.getBySize(size);
+    @GetMapping("/bricks/brickSearch")
+    public String briksearch(@RequestParam(value = "sn") String search, Model model){
+        model.addAttribute("userid", userInfo.getUserId());
+        model.addAttribute("bookInfo",brickService.findBrickByType(search));
+        return "books/searchBook";
     }
 }
