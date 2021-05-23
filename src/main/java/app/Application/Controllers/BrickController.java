@@ -15,7 +15,7 @@ public class BrickController {
     private BrickService brickService;
     private UserInfo userInfo;
     @GetMapping("/bricks/bricksave")
-    public String booksave(Model model){
+    public String bricksave(Model model){
         model.addAttribute("userid", userInfo.getUserId());
         return "bricks/saveBrick";
     }
@@ -35,16 +35,16 @@ public class BrickController {
         return "bricks/detailBrick";
     }
     @GetMapping("/briks/brickupdate")
-    public String brikupdate(@RequestParam(value="uid") Long uid, Model model){
+    public String brickupdate(@RequestParam(value="uid") Long uid, Model model){
         model.addAttribute("userid", userInfo.getUserId());
-        model.addAttribute("bookInfo", brickService.findBrickById(uid));
-        return "books/updateBook";
+        model.addAttribute("brickInfo", brickService.findBrickById(uid));
+        return "bricks/updateBook";
     }
 
     @GetMapping("/bricks/brickSearch")
-    public String briksearch(@RequestParam(value = "sn") String search, Model model){
+    public String bricksearch(@RequestParam(value = "sn") String search, Model model){
         model.addAttribute("userid", userInfo.getUserId());
-        model.addAttribute("bookInfo",brickService.findBrickByType(search));
-        return "books/searchBook";
+        model.addAttribute("brickInfo",brickService.findBrickByType(search));
+        return "bricks/searchBrick";
     }
 }

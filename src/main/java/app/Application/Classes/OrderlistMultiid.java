@@ -1,4 +1,4 @@
-package app.Application.Misc;
+package app.Application.Classes;
 
 import lombok.Data;
 
@@ -7,10 +7,9 @@ import java.io.Serializable;
 
 @Data
 @Embeddable
-public class MultiId implements Serializable {
+public class OrderlistMultiid implements Serializable {
 
-    private Long cartUid;
+    private Long ordersUid;
 
     private Long brickUid;
 }
-

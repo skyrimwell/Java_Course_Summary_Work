@@ -25,7 +25,7 @@ public class CartOrderService {
     private final BrickRepository brickRepository;
     private final CartOrderRepository cartOrderRepository;
     private final UserService userService;
-    private final BrickService bookService;
+    private final BrickService brickService;
 
     Date now = new Date();
     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy ss:mm:HH");
@@ -67,7 +67,7 @@ public class CartOrderService {
         multiId.setCartUid(cartUid);
         multiId.setBookUid(brickUid);
         cartOrderAddDto.setMultiId(multiId);
-        cartOrderAddDto.setBrick(bookService.findBrickById(brickUid));
+        cartOrderAddDto.setBrick(brickService.findBrickById(brickUid));
         cartOrderAddDto.setCart(cartfindByUser());
 
         return cartOrderRepository.save(cartOrderAddDto.toEntity()).toString();
