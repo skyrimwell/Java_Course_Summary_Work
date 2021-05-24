@@ -20,10 +20,11 @@ public class Orderlist implements Serializable {
 
     private Long count;
 
-    @MapsId("orderUid")
+    @MapsId("ordersUid")
     @ManyToOne
     @JoinColumn(name = "ORDER_UID")
     private Order order;
+
 
     @MapsId("brickUid")
     @ManyToOne

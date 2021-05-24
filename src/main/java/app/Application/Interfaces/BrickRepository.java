@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Repository("BrickRepository")
-public interface BrickRepository extends JpaRepository<Brick,Long> {
+public interface BrickRepository extends JpaRepository<Brick,UUID> {
     List<Brick> findBrickByType(String type);
     List<Brick> findBrickBySize(double size);
 

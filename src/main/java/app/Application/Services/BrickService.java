@@ -1,13 +1,10 @@
 package app.Application.Services;
 
 import app.Application.Classes.Brick;
-import app.Application.Classes.Cart;
 import app.Application.Interfaces.BrickRepository;
 import app.Application.Interfaces.CartRepository;
 import app.Application.dto.BrickUpdateCountDto;
 import app.Application.dto.BrickUpdateDto;
-import app.Application.Services.UserInfo;
-import app.Application.dto.BrickInfoDto;
 import app.Application.dto.BrickSaveDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,17 +32,17 @@ public class BrickService  {
     }
 
     @Transactional(readOnly = true)
-    public Brick findBrickById(Long uid){
+    public Brick findBrickById(UUID uid){
         return brickRepository.findById(uid).get();
     }
 
     @Transactional
-    public void  updateBrick(Long bookUid, BrickUpdateDto brickUpdateDto){
+    public void  updateBrick(UUID bookUid, BrickUpdateDto brickUpdateDto){
         findBrickById(bookUid).updateBrick(brickUpdateDto);
     }
 
     @Transactional
-    public void deleteBrick(Long uid){
+    public void deleteBrick(UUID uid){
         brickRepository.delete(findBrickById(uid));
     }
 
@@ -60,9 +57,9 @@ public class BrickService  {
     }
 
     @Transactional
-    public void updateCountBrick(List<Long> brickUid, List<Long> count){
+    public void updateCountBrick(List<UUID> brickUid, List<Long> count){
         int index = 0;
-        for (Long brickuid : brickUid) {
+        for (UUID brickuid : brickUid) {
             System.out.println("Book count update");
             Brick brick = new Brick();
             brick = findBrickById(brickuid);
@@ -74,9 +71,9 @@ public class BrickService  {
         }
     }
     @Transactional(readOnly = true)
-    public List<Brick> findBrickByArrayUid(List<Long> brickUid){
+    public List<Brick> findBrickByArrayUid(List<UUID> brickUid){
         List<Brick> arrBook = new ArrayList<Brick>();
-        for (Long uid : brickUid) {
+        for (UUID uid : brickUid) {
             arrBook.add(brickRepository.getOne(uid));
         }
         return arrBook;

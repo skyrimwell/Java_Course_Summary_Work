@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 @Controller
 public class UserController {
-    private final UserService userService;
+    private final UsersService userService;
     private final UserInfo userInfo;
     private final BrickService brickService;
     private final CartOrderService cartOrderService;
@@ -44,7 +44,7 @@ public class UserController {
     public String cartlist(Model model){
         model.addAttribute("userid", userInfo.getUserId());
         if(cartOrderService.cartfindByUser() != null){
-            model.addAttribute("cartlistInfo", cartOrderService.findByCartuid());
+            model.addAttribute("cartOrderInfo", cartOrderService.findByCartuid());
         }
         return "users/cartOrder";
     }

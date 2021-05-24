@@ -21,7 +21,7 @@ public class BrickController {
     }
 
     @GetMapping("/bricks/brickdetail")
-    public String brickdetail(@RequestParam(value = "uid") Long uid, Model model){
+    public String brickdetail(@RequestParam(value = "uid") UUID uid, Model model){
         model.addAttribute("userid", userInfo.getUserId());
         model.addAttribute("brickInfo", brickService.findBrickById(uid));
         if(userInfo.getUserId() != null){
@@ -35,7 +35,7 @@ public class BrickController {
         return "bricks/detailBrick";
     }
     @GetMapping("/briks/brickupdate")
-    public String brickupdate(@RequestParam(value="uid") Long uid, Model model){
+    public String brickupdate(@RequestParam(value="uid") UUID uid, Model model){
         model.addAttribute("userid", userInfo.getUserId());
         model.addAttribute("brickInfo", brickService.findBrickById(uid));
         return "bricks/updateBook";

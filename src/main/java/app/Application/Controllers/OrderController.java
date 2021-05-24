@@ -8,17 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Controller
 public class OrderController {
     private final UserInfo userInfo;
     private final OrderService orderService;
-    private final UserService userService;
+    private final UsersService userService;
     private final BrickService brickservice;
 
     @GetMapping("/orders/addOrder")
-    public String addOrder(@RequestParam(value = "brickUid") Long brickUid, @RequestParam(value="count") Long count ,Model model){
+    public String addOrder(@RequestParam(value = "brickUid") UUID brickUid, @RequestParam(value="count") Long count , Model model){
         model.addAttribute("userid", userInfo.getUserId());
         model.addAttribute("cardInfo", userService.findAllCard(userInfo));
         model.addAttribute("brickInfo", brickservice.findBrickById(brickUid));
@@ -28,7 +29,7 @@ public class OrderController {
     }
 
     @GetMapping("/orders/addCartlistOrder")
-    public String addCartlistOrder(@RequestParam(value = "brickUid[]") List<Long> brickUid, @RequestParam(value = "count[]") Long[] count , Model model){
+    public String addCartlistOrder(@RequestParam(value = "brickUid[]") List<UUID> brickUid, @RequestParam(value = "count[]") Long[] count , Model model){
         model.addAttribute("userid", userInfo.getUserId());
         model.addAttribute("cardInfo", userService.findAllCard(userInfo));
         model.addAttribute("bookInfo", brickservice.findBrickByArrayUid(brickUid));

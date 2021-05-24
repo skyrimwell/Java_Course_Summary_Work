@@ -6,22 +6,16 @@ import app.Application.Interfaces.UserRepository;
 import app.Application.Classes.Card;
 import org.springframework.stereotype.Service;
 import app.Application.dto.CardInfoDto;
-import app.Application.dto.RegisterDto;
-import app.Application.Misc.UserAlreadyExists;
 import app.Application.Classes.User;
 import app.Application.dto.UserUpDto;
-import app.Application.dto.CardInfoDto;
 import app.Application.dto.UserInDto;
-import app.Application.Services.UserInfo;
-import app.Application.Classes.UserStats;
-import app.Application.Interfaces.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserService{
+public class UsersService {
     private final UserRepository userRepository;
     private final CardRepository cardRepository;
     PasswordEncoding passwordEncoding = new PasswordEncoding();

@@ -1,0 +1,38 @@
+erver:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 1234
+    driverClassName: org.postgresql.Driver
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
+      table-name: SPRING_SESSION
+      schema: classpath:org/springframework/session/jdbc/schema-postgresql.sql
+
+
+dir:
+  result: src/main/resources/result
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    jmx:
+      exposure:
+        include: "*"
+      domain: practice22

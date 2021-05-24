@@ -4,7 +4,6 @@ import app.Application.Interfaces.BrickRepository;
 import app.Application.Classes.Cart;
 import app.Application.Interfaces.CartRepository;
 import app.Application.Classes.CartOrder;
-import app.Application.Services.UserInfo;
 import app.Application.Interfaces.CartOrderRepository;
 import app.Application.Misc.MultiId;
 import app.Application.dto.CartCreateDto;
@@ -16,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -24,7 +24,7 @@ public class CartOrderService {
     private final CartRepository cartRepository;
     private final BrickRepository brickRepository;
     private final CartOrderRepository cartOrderRepository;
-    private final UserService userService;
+    private final UsersService userService;
     private final BrickService brickService;
 
     Date now = new Date();
@@ -61,11 +61,11 @@ public class CartOrderService {
     }
 
     @Transactional
-    public String addCartOrder(Long brickUid, CartOrderAddDto cartOrderAddDto){
+    public String addCartOrder(UUID brickUid, CartOrderAddDto cartOrderAddDto){
         Long cartUid = cartRepository.findByUsers_Id(userInfo.getUserId()).getUid();
         MultiId multiId = new MultiId();
         multiId.setCartUid(cartUid);
-        multiId.setBookUid(brickUid);
+        multiId.setBrickUid(brickUid);
         cartOrderAddDto.setMultiId(multiId);
         cartOrderAddDto.setBrick(brickService.findBrickById(brickUid));
         cartOrderAddDto.setCart(cartfindByUser());
@@ -85,11 +85,11 @@ public class CartOrderService {
     }
 
     @Transactional
-    public void deleteCartOrder(Long brickUid){
+    public void deleteCartOrder(UUID brickUid){
         Cart cart = cartfindByUser();
         MultiId mId = new MultiId();
         mId.setCartUid(cart.getUid());
-        mId.setBookUid(brickUid);
+        mId.setBrickUid(brickUid);
         cartOrderRepository.deleteById(mId);
     }
 }

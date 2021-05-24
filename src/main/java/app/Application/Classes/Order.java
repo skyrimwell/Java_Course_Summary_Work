@@ -34,12 +34,12 @@ public class Order {
 
     private Long shippingNum;
 
-    @OneToMany(mappedBy = "orders", orphanRemoval = true)
-    private List<Orderlist> orderlists;
+    @OneToMany(mappedBy = "order", orphanRemoval = true)
+    private List<Orderlist> orderlist;
 
 
     @Builder
-    public Order(Long uid, User user, String date, Long amount, String cardId, String cardType, String cardDate, List<Orderlist> orderlists){
+    public Order(Long uid, User user, String date, Long amount, String cardId, String cardType, String cardDate, List<Orderlist> orderlist){
         this.uid= uid;
         this.user = user;
         this.date = date;
@@ -47,7 +47,7 @@ public class Order {
         this.cardId = cardId;
         this.cardType = cardType;
         this.cardDate= cardDate;
-        this.orderlists = orderlists;
+        this.orderlist = orderlist;
     }
 
 }

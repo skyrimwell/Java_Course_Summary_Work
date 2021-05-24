@@ -15,10 +15,10 @@ public class BrickUpdateDto {
     private String type;
     private double size;
     private String color;
-    private int count;
+    private Long brickcount;
     private int price;
 
     public Brick toEntity(){
-        return Brick.builder().uid(uid).type(type).size(size).color(color).count(count).price(price).build();
+        return Brick.builder().uid(uid).type(type).size(size).color(color).count(brickcount).price(price).build();
     }
 }
