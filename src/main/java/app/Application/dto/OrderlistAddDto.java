@@ -1,6 +1,6 @@
 package app.Application.dto;
 import app.Application.Classes.Brick;
-import app.Application.Classes.Order;
+import app.Application.Classes.Orders;
 import app.Application.Classes.Orderlist;
 import app.Application.Classes.OrderlistMultiid;
 import lombok.Getter;
@@ -13,9 +13,9 @@ import lombok.Setter;
 public class OrderlistAddDto {
     private OrderlistMultiid orderlistMultiid;
 
-    private Long  count;
+    private Long count;
 
-    private Order order;
+    private Orders orders;
 
     private Brick brick;
 
@@ -23,7 +23,7 @@ public class OrderlistAddDto {
         return Orderlist.builder()
                 .orderlistMultiid(orderlistMultiid)
                 .count(count)
-                .order(order)
+                .orders(orders)
                 .brick(brick)
                 .build();
     }

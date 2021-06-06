@@ -1,0 +1,47 @@
+{{>layout/header}}
+{{>layout/nav}}
+<div class="maintxt">
+      Добро пожаловать в кирпичную лавку "Черепаха" - здесь вы можете заказать кирпичные изделия необходимого вам размера,
+    цвета. Для начала пользования магазином вы должны пройти регистрацию, нажав на кнопку "Войти"
+</div>
+<div class="container col-md-4">
+</div>
+<div>
+    {{#master}}
+        <a class="btn btn-outline-secondary float-right mr-4" href="/bricks/bricksave">Выбор нужных критериев кирпичей</a>
+    {{/master}}
+    {{^master}}
+    {{/master}}
+</div>
+<div class="album py-5">
+    <div class="container">
+        <div class="row">
+            {{#brickInfo}}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="card-text">{{brickType}}</h4>
+                                <small class="card-text">{{brickSize}}</small>
+                            </div>
+                            <div class="mb-2 d-flex align-items-center flex-row-reverse">
+                                <h5 class="card-text mr-2 float-right">
+                                    {{brickPrice}}р
+                                </h5>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" onclick="location.href='/bricks/brickdetail?uid={{uid}}'" class="btn btn-sm btn-outline-secondary">
+                                    Посмотреть детали</button>
+                                    <button type="button" onclick="location.href='/bricks/brickupdate?uid={{uid}}'" class="btn btn-sm btn-outline-secondary">
+                                    Изменить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/brickInfo}}
+        </div>
+    </div>
+</div>
+{{>layout/footer}}

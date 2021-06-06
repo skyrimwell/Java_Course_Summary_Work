@@ -1,0 +1,50 @@
+{{>layout/header}}
+{{>layout/nav}}
+<div class="container">
+
+    <div class="col-md-12">
+        <h1 class="mb-4">{{userid}}, добро пожаловать.</h1>
+        <h3> Вы находитесь в вашем личном кабинете, для дальнейших покупок, вам стоит добавить карту плательщика</h3>
+        <div class="row">
+            <div class="col-md-6" id="cardDiv">
+                <h2>
+                    Ваша карта: </h2>
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th id="inputunits">Изготовитель</th>
+                        <th id="inputunits">Номер карты</th>
+                        <th id="inputunits">Срок действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#cardInfo}}
+                        <tr>
+                            <td>{{type}}</td>
+                            <td>{{id}}</td>
+                            <td>{{datetime}}</td>
+                        </tr>
+                    {{/cardInfo}}
+                    </tbody>
+                </table>
+                <p><a class="btn btn-outline-secondary" id="btn-cardadd" role="button">Добавить карту »</a></p>
+                <div id="container-card"></div>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered text-center">
+            <thead>
+            <th id="inputunits">Дата заказа</th>
+            <th id="inputunits">Цена</th>
+            </thead>
+            <tbody>
+            {{#orderInfo}}
+                <tr>
+                    <td>{{orderDate}}</td>
+                    <td>{{brickPrice}}</td>
+                </tr>
+            {{/orderInfo}}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{>layout/footer}}

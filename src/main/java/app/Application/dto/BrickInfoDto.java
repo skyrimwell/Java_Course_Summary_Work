@@ -11,12 +11,12 @@ import java.util.UUID;
 @NoArgsConstructor
 public class BrickInfoDto {
 
-    private UUID uid;
-    private String type;
-    private double size;
-    private String color;
+    private Long uid;
+    private String brickType;
+    private double brickSize;
+    private String brickColor;
 
     public Brick toEntity(){
-        return Brick.builder().uid(uid).type(type).size(size).color(color).build();
+        return Brick.builder().uid(uid).brickType(brickType).brickSize(brickSize).brickColor(brickColor).build();
     }
 }

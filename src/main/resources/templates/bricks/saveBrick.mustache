@@ -1,0 +1,34 @@
+{{>layout/header}}
+{{>layout/nav}}
+<div class="container">
+    <div class="col-md-12">
+        <h1>Регистрация кирпичей</h1>
+        <div class="col-md-4">
+            <form method="get">
+                <div class="form-group">
+                    <label for="brick_type" id="inputunits">Тип:</label>
+                    <input type="text" class="form-control" id="brick_type" placeholder="Тип">
+                </div>
+                <div class="form-group">
+                    <label for="brick_size" id="inputunits">Размер(см):</label>
+                    <input type="text" class="form-control" id="brick_size" placeholder="Размер">
+                </div>
+                <div class="form-group">
+                    <label for="brick_color" id="inputunits">Цвет:</label>
+                    <input type="text" class="form-control" id="brick_color" placeholder="Цвет">
+                </div>
+                <div class="form-group">
+                    <label for="brick_price" id="inputunits">Цена:</label>
+                    <input type="text" class="form-control" id="brick_price" placeholder="Цена">
+                </div>
+                <div class="form-group">
+                    <label for="brick_count" id="inputunits">Количество:</label>
+                    <input type="text" class="form-control" id="brick_count" placeholder="Количество">
+                </div>
+            </form>
+            <a href="/" role="button" class="btn btn-outline-danger">Отменить</a>
+            <button type="button" class="btn btn-outline-secondary" id="btn-bricksSave">Сохранить</button>
+        </div>
+    </div>
+</div>
+{{>layout/footer}}

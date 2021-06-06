@@ -1,7 +1,7 @@
 package app.Application.dto;
 
 import app.Application.Classes.Cart;
-import  app.Application.Classes.User;
+import app.Application.Classes.Users;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,13 +10,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CartUpdateDto {
-    private User user;
+    private Users users;
     private String createtime;
     private String modifytime;
 
     public Cart toEntity(){
         return Cart.builder()
-                .user(user)
+                .users(users)
                 .createtime(createtime)
                 .modifytime(modifytime)
                 .build();

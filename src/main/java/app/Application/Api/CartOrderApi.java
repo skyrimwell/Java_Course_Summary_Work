@@ -21,18 +21,18 @@ public class CartOrderApi {
     private final CartOrderService cartOrderService;
     private final BrickService brickService;
 
-    @ApiOperation(value = "Add to Shopping Cart")
-    @PostMapping("/addCartOrder/{bookUid}")
-    public ResponseEntity<?> addCartlist(@PathVariable(value = "brickUid") UUID brickUid, @RequestBody CartOrderAddDto cartOrderAddDto) {
+    @ApiOperation(value = "Добавить в корзину")
+    @PostMapping("/addCartOrder/{brickUid}")
+    public ResponseEntity<?> addCartOrder(@PathVariable(value = "brickUid") Long brickUid, @RequestBody CartOrderAddDto cartOrderAddDto) {
         ApiResponse result = null;
         try {
-            if (cartOrderService.existCart() == true){
-                System.out.println("Exist Cart");
+            if (cartOrderService.existCart()){
+                System.out.println("Корзина существует");
                 result = new ApiResponse(true, "success", cartOrderService.addCartOrder(brickUid, cartOrderAddDto));
                 cartOrderService.updateModifyTimeInCart();
                 return ResponseEntity.ok().body(result);
             }else {
-                System.out.println("Not Extist Cart");
+                System.out.println("Корзина не существует");
                 cartOrderService.createCart();
                 result = new ApiResponse(true, "\n" + "success", cartOrderService.addCartOrder(brickUid, cartOrderAddDto));
                 return ResponseEntity.ok().body(result);
@@ -44,9 +44,9 @@ public class CartOrderApi {
         }
     }
 
-    @PostMapping(value = "/deleteCartlist")
-    public void deleteCartlist(@RequestParam(value = "checkArr[]") List<UUID> valueArr){
-        for (UUID string : valueArr) {
+    @PostMapping(value = "/deleteCartOrder")
+    public void deleteCartOrder(@RequestParam(value = "checkArr[]") List<Long> valueArr){
+        for (Long string : valueArr) {
             cartOrderService.deleteCartOrder(string);
         }
     }

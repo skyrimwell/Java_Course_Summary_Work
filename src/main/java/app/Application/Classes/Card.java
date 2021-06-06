@@ -1,5 +1,4 @@
 package app.Application.Classes;
-import app.Application.Classes.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,16 +17,16 @@ public class Card {
 
     @ManyToOne
     @JoinColumn(name = "USERS_ID")
-    private User user;
+    private Users users;
 
     private String datetime;
 
     private String type;
 
     @Builder
-    public Card(String id, User user, String datetime, String type){
+    public Card(String id, Users users, String datetime, String type){
         this.id = id;
-        this.user = user;
+        this.users = users;
         this.datetime = datetime;
         this.type = type;
     }

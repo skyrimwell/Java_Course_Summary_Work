@@ -2,13 +2,13 @@ package app.Application.Services;
 import  app.Application.Misc.PasswordEncoding;
 import lombok.RequiredArgsConstructor;
 import app.Application.Interfaces.CardRepository;
-import app.Application.Interfaces.UserRepository;
+import app.Application.Interfaces.UsersRepository;
 import app.Application.Classes.Card;
 import org.springframework.stereotype.Service;
 import app.Application.dto.CardInfoDto;
-import app.Application.Classes.User;
-import app.Application.dto.UserUpDto;
-import app.Application.dto.UserInDto;
+import app.Application.Classes.Users;
+import app.Application.dto.UsersUpDto;
+import app.Application.dto.UsersInDto;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -16,18 +16,18 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UsersService {
-    private final UserRepository userRepository;
+    private final UsersRepository usersRepository;
     private final CardRepository cardRepository;
     PasswordEncoding passwordEncoding = new PasswordEncoding();
 
     @Transactional(readOnly = true)
-    public User findUsers(UserInfo userInfo){
-        return userRepository.findById(userInfo.getUserId()).get();
+    public Users findUsers(UsersInfo usersInfo){
+        return usersRepository.findById(usersInfo.getUserId()).get();
     }
 
     @Transactional(readOnly = true)
     public boolean findUsersById(String id) {
-        if(userRepository.findById(id).isEmpty()){
+        if(usersRepository.findById(id).isEmpty()){
             return false;
         }else {
             return true;
@@ -35,18 +35,18 @@ public class UsersService {
 
     }
     @Transactional
-    public String signup(UserUpDto userUpDto){
-        userUpDto.setPw(passwordEncoding.encode(userUpDto.getPw()));
-        return userRepository.save(userUpDto.toEntity()).getId();
+    public String signup(UsersUpDto usersUpDto){
+        usersUpDto.setPw(passwordEncoding.encode(usersUpDto.getPw()));
+        return usersRepository.save(usersUpDto.toEntity()).getId();
     }
     @Transactional(readOnly = true)
-    public boolean signin(UserInDto userInDto){
-        String dbResultPw = userRepository.getOne(userInDto.getId()).getPw();
-        String bodyResultPw = userInDto.getPw();
+    public boolean signin(UsersInDto usersInDto){
+        String dbResultPw = usersRepository.getOne(usersInDto.getId()).getPw();
+        String bodyResultPw = usersInDto.getPw();
         return passwordEncoding.matches(bodyResultPw, dbResultPw);
     }
     @Transactional(readOnly = true)
-    public List<Card> findAllCard(UserInfo usersInfo){
+    public List<Card> findAllCard(UsersInfo usersInfo){
         return cardRepository.findAllByUsers_Id(usersInfo.getUserId());
     }
     @Transactional(readOnly = true)

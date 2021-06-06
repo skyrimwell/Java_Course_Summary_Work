@@ -1,6 +1,5 @@
 package app.Application.Api;
 
-import app.Application.Api.*;
 import app.Application.Services.*;
 import app.Application.dto.BrickSaveDto;
 import app.Application.dto.BrickUpdateDto;
@@ -12,12 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.persistence.*;
-import java.util.UUID;
-
 @Api(value = "bricks", description = "\n" +
         "Brick management", tags = { "\n" +
-        "bricks" })
+        "bricks"})
 @RequestMapping("/bricks")
 @RestController
 @RequiredArgsConstructor
@@ -26,7 +22,7 @@ public class BrickApi {
 
     @ApiOperation(value = "Brick registration")
     @PostMapping("/saveBricks")
-    public ResponseEntity<?> saveBooks(@RequestBody BrickSaveDto brickSaveDto){
+    public ResponseEntity<?> saveBricks(@RequestBody BrickSaveDto brickSaveDto){
         ApiResponse result = null;
         try {
             result = new ApiResponse(true, "\n" + "success", brickService.saveBrick(brickSaveDto));
@@ -40,7 +36,7 @@ public class BrickApi {
 
     @ApiOperation(value = "\n" + "Brick modification")
     @PostMapping("/updateBricks/{uid}")
-    public ResponseEntity<?> updateBricks(@PathVariable("uid") UUID uid, @RequestBody BrickUpdateDto brickUpdateDto){
+    public ResponseEntity<?> updateBricks(@PathVariable("uid") Long uid, @RequestBody BrickUpdateDto brickUpdateDto){
         ApiResponse result = null;
         brickUpdateDto.setUid(uid);
         try {
@@ -56,7 +52,7 @@ public class BrickApi {
 
     @ApiOperation(value = "\n" + "Delete brick")
     @PostMapping("/deleteBricks/{uid}")
-    public RedirectView deleteBricks(@PathVariable("uid") UUID uid){
+    public RedirectView deleteBricks(@PathVariable("uid") Long uid){
         brickService.deleteBrick(uid);
         return new RedirectView("/");
     }

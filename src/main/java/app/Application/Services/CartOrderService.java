@@ -20,7 +20,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Service
 public class CartOrderService {
-    private final UserInfo userInfo;
+    private final UsersInfo usersInfo;
     private final CartRepository cartRepository;
     private final BrickRepository brickRepository;
     private final CartOrderRepository cartOrderRepository;
@@ -33,12 +33,12 @@ public class CartOrderService {
 
     @Transactional(readOnly = true)
     public Cart cartfindByUser(){
-        return cartRepository.findByUsers_Id(userInfo.getUserId());
+        return cartRepository.findByUsers_Id(usersInfo.getUserId());
     }
 
     @Transactional(readOnly = true)
     public boolean existCart(){
-        if(cartRepository.findByUsers_Id(userInfo.getUserId()) != null){
+        if(cartRepository.findByUsers_Id(usersInfo.getUserId()) != null){
             return true;
         }else {
             return false;
@@ -49,7 +49,7 @@ public class CartOrderService {
         CartCreateDto cartCreateDto = new CartCreateDto();
         cartCreateDto.setCreatetime(nowDate);
         cartCreateDto.setModifytime(nowDate);
-        cartCreateDto.setUser(userService.findUsers(userInfo));
+        cartCreateDto.setUsers(userService.findUsers(usersInfo));
 
         return cartRepository.save(cartCreateDto.toEntity()).toString();
     }
@@ -61,8 +61,8 @@ public class CartOrderService {
     }
 
     @Transactional
-    public String addCartOrder(UUID brickUid, CartOrderAddDto cartOrderAddDto){
-        Long cartUid = cartRepository.findByUsers_Id(userInfo.getUserId()).getUid();
+    public String addCartOrder(Long brickUid, CartOrderAddDto cartOrderAddDto){
+        Long cartUid = cartRepository.findByUsers_Id(usersInfo.getUserId()).getUid();
         MultiId multiId = new MultiId();
         multiId.setCartUid(cartUid);
         multiId.setBrickUid(brickUid);
@@ -85,7 +85,7 @@ public class CartOrderService {
     }
 
     @Transactional
-    public void deleteCartOrder(UUID brickUid){
+    public void deleteCartOrder(Long brickUid){
         Cart cart = cartfindByUser();
         MultiId mId = new MultiId();
         mId.setCartUid(cart.getUid());

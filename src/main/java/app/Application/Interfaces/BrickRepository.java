@@ -10,12 +10,12 @@ import java.util.Map;
 import java.util.UUID;
 
 @Repository("BrickRepository")
-public interface BrickRepository extends JpaRepository<Brick,UUID> {
-    List<Brick> findBrickByType(String type);
-    List<Brick> findBrickBySize(double size);
+public interface BrickRepository extends JpaRepository<Brick,Long> {
+    List<Brick> findBrickByBrickType(String brickType);
+    List<Brick> findBrickByBrickSize(double brickSize);
 
     @NotNull List<Brick> findAll();
-    void deleteById(UUID uid);
+    void deleteById(Long uid);
 
 
 }

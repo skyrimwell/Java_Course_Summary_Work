@@ -1,0 +1,44 @@
+{{>layout/header}}
+{{>layout/nav}}
+<div class="container">
+    <div class="col-md-10">
+        <h1>
+            Изменение свойств заказа</h1>
+        <div class="col-md-10">
+            {{#brickInfo}}
+                <form method="post">
+                    <div class="form-group">
+                        <label for="brick_type">Тип кирпича</label>
+                        <input type="text" class="form-control" id="brick_type" value="{{brickType}}" placeholder="Пожалуйста, введите тип интересующего кирпича">
+                    </div>
+                    <div class="form-group">
+                        <label for="brick_size" id="inputunits">
+                           Размер</label>
+                        <input type="text" class="form-control" id="brick_size" value="{{brickSize}}" placeholder="
+Пожалуйста, введите Размер">
+                    </div>
+                    <div class="form-group">
+                        <label for="brick_color" id="inputunits">цвет</label>
+                        <input type="text" class="form-control" id="brick_color" value="{{brickColor}}" placeholder="
+Пожалуйста, введите цвет">
+                    </div>
+                    <div class="form-group">
+                        <label for="brick_price" id="inputunits">
+                            цена</label>
+                        <input type="text" class="form-control" id="brick_price" value="{{brickPrice}}" placeholder="Пожалуйста, введите цену">
+                    </div>
+                    <div class="form-group">
+                        <label for="brick_count" id="inputunits">
+                            Количество</label>
+                        <input type="text" class="form-control" id="brick_count" value="{{brickCount}}" placeholder="Пожалуйста, введите количество">
+                    </div>
+
+                </form>
+                <a href="/" role="button" class="btn btn-outline-danger">
+                    отменить</a>
+                <button type="button" class="btn btn-outline-secondary" id="btn-booksUpdate">Изменения завершены</button>
+            {{/brickInfo}}
+        </div>
+    </div>
+</div>
+{{>layout/footer}}

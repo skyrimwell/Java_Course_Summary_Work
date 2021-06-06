@@ -1,0 +1,88 @@
+{{>layout/header}}
+{{>layout/nav}}
+{{^cartOrderInfo}}
+  <script>
+        alert("Ваша корзина пуста.");
+       window.location.href = "/";
+   </script>
+{{/cartOrderInfo}}
+<script src="/js/app/cartOrder.js"></script>
+<div class="container" id="backgroundcont">
+    <div class="d-flex justify-content-center">
+        <h3 >
+            Корзина</h3>
+    </div>
+    <div>
+        <div class="row">
+            <div class="mr-2">
+                <input type="checkbox" id="allCheck" checked/>
+            </div>
+            <div>
+                <p id="inputunits">Выбрать все</p>
+            </div>
+        </div>
+        <div>
+            {{#cartOrderInfo}}
+                <script>
+                    i++;
+                </script>
+                <table class="table table-bordered table-hover text-center" id="table">
+                    <tbody>
+                    <tr class="d-flex">
+                        <td class="col-md-1">
+                            <div>
+                                <script>
+                                    document.write(`<input type="checkbox" name="check_name" value="`+ {{brick.uid}} +`" id="checkbox`+ i +`" checked/>`)
+                                </script>
+                            </div>
+                        </td>
+                        <td class="col-md-5">
+                            <div>
+                                <div id="inputunits">
+                                    Тип кирпича: {{brick.brickType}}</div>
+                                <div id="inputunits">
+                                    Размер: {{brick.brickSize}}</div>
+                                <div id="inputunits">
+                                    Цвет: {{brick.brickColor}}</div>
+
+                            </div>
+                        </td>
+                        <td class="col-md-2">
+                            <div class="row">
+                                <div class="mr-1" id="inputunits">
+                                    Количество: </div>
+                                <script>
+                                    document.write(`<input class="col-md-8 form-control" name="count" id="brickCount`+i+`"type="number" min="1" max="`+ {{brick.brickCount}} +`" value="`+ {{brickCount}} +`"/>`);
+                                </script>
+                            </div>
+                        </td>
+                        <td class="col-md-4">
+                            <div class="row d-flex justify-content-center">
+                                <p class="mb-0 mr-2" id="inputunits">
+                                    Цена: </p>
+                                <script>
+                                    document.write(`<p class="mb-0 text-center" id="total`+i+`">`+
+                                            multipleTotalPrice({{brick.brickPrice}},i)+
+                                            `</p>`)
+                                </script>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            {{/cartOrderInfo}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="d-flex justify-content-start">
+            <button type="button" id="btn-deleteCartOrder" class="btn btn-outline-danger">Удалить</button>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        <div class="btn-group">
+            <button type="button" class="btn btn-lg btn-outline-secondary" id="btn-cartlistOrder" >Купить</button>
+            <button type="button" class="btn btn-lg btn-outline-secondary">Отменить</button>
+        </div>
+    </div>
+</div>
+

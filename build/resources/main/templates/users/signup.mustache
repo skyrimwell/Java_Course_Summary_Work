@@ -1,0 +1,21 @@
+{{>layout/header}}
+{{>layout/nav}}
+
+<div class="container">
+    <form>
+        <div class="form-group" id="loginunits">
+            <label for="id">Логин</label>
+            <input type="text" class="form-control" id="id" placeholder="Пожалуйста, введите ваш логин" required>
+        </div>
+        <div class="form-group" id="loginunits">
+            <label for="pw">Пароль</label>
+            <input type="password" class="form-control" id="pw" placeholder="Пароль" required>
+        </div>
+        <div class="form-group" id="loginunits">
+            <label for="name">Имя</label>
+            <input type="text" class="form-control" id="name" placeholder="Введите свое имя, пожалуйста" required>
+        </div>
+    </form>
+    <button type="button" id="btn-signup" class="btn btn-secondary">Зарегистрироваться</button>
+</div>
+{{>layout/footer}}

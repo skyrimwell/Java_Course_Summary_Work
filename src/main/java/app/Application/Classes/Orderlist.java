@@ -1,8 +1,5 @@
 package app.Application.Classes;
 
-import app.Application.Classes.Brick;
-import app.Application.Classes.Order;
-import app.Application.Classes.OrderlistMultiid;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,8 +19,8 @@ public class Orderlist implements Serializable {
 
     @MapsId("ordersUid")
     @ManyToOne
-    @JoinColumn(name = "ORDER_UID")
-    private Order order;
+    @JoinColumn(name = "ORDERS_UID")
+    private Orders orders;
 
 
     @MapsId("brickUid")
@@ -32,10 +29,10 @@ public class Orderlist implements Serializable {
     private Brick brick;
 
     @Builder
-    public Orderlist(OrderlistMultiid orderlistMultiid, Long count, Order order, Brick brick){
+    public Orderlist(OrderlistMultiid orderlistMultiid, Long count, Orders orders, Brick brick){
         this.orderlistMultiid = orderlistMultiid;
         this.count = count;
-        this.order = order;
+        this.orders = orders;
         this.brick = brick;
     }
 }

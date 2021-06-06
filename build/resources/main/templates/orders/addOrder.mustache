@@ -1,0 +1,115 @@
+{{>layout/header}}
+{{>layout/nav}}
+<script src="/js/app/addOrder.js"></script>
+<script>
+    totalPrice = {{brickInfo.brickPrice}}*{{count}};
+</script>
+
+<div class="container" id="backgroundcont">
+    <div class="d-flex justify-content-center mb-5">
+        <h4>Заказать</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div>
+                <div class="row">
+                    <div class="col-md-4 d-flex justify-content-center" id="inputunits">
+                        Тип кирпича
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-center" id="inputunits">
+                        Размер
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-center" id="inputunits">
+                        Цвет
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-center" id="inputunits">
+                        Цена
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-center" id="inputunits">
+                        Количество
+                    </div>
+                </div>
+                <hr>
+                {{#brickInfo}}
+                    <div class="row">
+                        <div class="col-md-4 d-flex justify-content-center" id="inputunits">
+                            {{brickType}}
+                        </div>
+                        <div class="col-md-2 d-flex justify-content-center" id="inputunits">
+                            {{brickSize}}
+                        </div>
+                        <div class="col-md-2 d-flex justify-content-center" id="inputunits">
+                            {{brickColor}}
+                        </div>
+                        <div class="col-md-2 d-flex justify-content-center" id="inputunits">
+                            {{count}}
+                        </div>
+                        <div class="col-md-2 d-flex justify-content-center" id="inputunits">
+                            <script>
+                                document.write(totalPrice);
+                            </script>
+                        </div>
+                    </div>
+                {{/brickInfo}}
+                <hr>
+            </div>
+            <div class="">
+                <div class="border rounded mb-3">
+                    <div class="mt-2 mb-3 d-flex justify-content-center border-bottom">
+                        <h5 id="inputunits">Карта</h5>
+                    </div>
+                    <div>
+                        <select name="cardSelect" id="cardSelect" class="custom-select">
+                            <option value="none">Выберете карту</option>
+                            {{#cardInfo}}
+                                <option value="{{id}}">{{id}} / {{type}}</option>
+                            {{/cardInfo}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 border rounded d-flex flex-column justify-content-around">
+            <div class="mt-2 d-flex justify-content-center border-bottom">
+                <h5 id="inputunits">Цена</h5>
+            </div>
+            <div class="row d-flex justify-content-between border-bottom">
+                <div class="ml-2">
+                    <span id="inputunits">Цена за шт.</span>
+                </div>
+                <div class="mr-4">
+                    <strong>{{brickInfo.brickPrice}}</strong>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-between border-bottom">
+                <div class="ml-2">
+                    <span id="inputunits">Количество</span>
+                </div>
+                <div class="mr-4">
+                    <strong>{{count}}</strong>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-between border-bottom">
+                <div class="ml-2">
+                    <span id="inputunits">Итого</span>
+                </div>
+                <div class="mr-4">
+                    <strong>
+                        <script>
+                            document.write(totalPrice);
+                        </script>
+                    </strong>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-between">
+                <div class="col-md-6 p-1">
+                    <button class="btn btn-outline-secondary btn-block" id="btn-order">Заказать</button>
+                </div>
+                <div class="col-md-6 p-1">
+                    <button class="btn btn-outline-secondary btn-block" onclick=backLocation()>Отменить заказ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{>layout/footer}}

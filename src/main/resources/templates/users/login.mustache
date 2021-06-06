@@ -1,0 +1,19 @@
+{{>layout/header}}
+{{>layout/nav}}
+<div class="container">
+    <form class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">
+            Войти</h1>
+        <label for="id" class="sr-only">
+            Логин</label>
+        <input type="text" id="id" class="form-control" placeholder="Логин" required="" autofocus="">
+        <label for="pw" class="sr-only">Пароль</label>
+        <input type="password" id="pw" class="form-control" placeholder="пароль" required="">
+    </form>
+    <div class="btn-group-lg-vertical">
+        <button class="btn btn-lg btn-secondary btn-block" id="btn-login" type="button">Войти</button>
+        <button class="btn btn-lg btn-secondary btn-block" onclick="location.href='/users/signup'" >Зарегистрироваться</button>
+
+    </div>
+</div>
+{{>layout/footer}}

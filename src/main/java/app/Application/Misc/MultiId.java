@@ -12,6 +12,6 @@ public class MultiId implements Serializable {
 
     private Long cartUid;
 
-    private UUID brickUid;
+    private Long brickUid;
 }
 

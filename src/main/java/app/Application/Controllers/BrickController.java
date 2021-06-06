@@ -1,50 +1,52 @@
 package app.Application.Controllers;
 
-import app.Application.Classes.Brick;
+import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
-import app.Application.Services.UserInfo;
+import app.Application.Services.UsersInfo;
 import app.Application.Services.BrickService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-import java.util.UUID;
-@RestController
+@RequiredArgsConstructor
+@Controller
 public class BrickController {
 
-    private BrickService brickService;
-    private UserInfo userInfo;
+    private final BrickService brickService;
+    private final UsersInfo usersInfo;
+
     @GetMapping("/bricks/bricksave")
     public String bricksave(Model model){
-        model.addAttribute("userid", userInfo.getUserId());
+        model.addAttribute("userid", usersInfo.getUserId());
         return "bricks/saveBrick";
     }
 
     @GetMapping("/bricks/brickdetail")
-    public String brickdetail(@RequestParam(value = "uid") UUID uid, Model model){
-        model.addAttribute("userid", userInfo.getUserId());
+    public String brickdetail(@RequestParam(value = "uid") Long uid, Model model){
+        model.addAttribute("userid", usersInfo.getUserId());
         model.addAttribute("brickInfo", brickService.findBrickById(uid));
-        if(userInfo.getUserId() != null){
-            if(userInfo.getUserId().equals("master")){
-                model.addAttribute("master", userInfo.getUserId());
+        if(usersInfo.getUserId() != null){
+            if(usersInfo.getUserId().equals("master")){
+                model.addAttribute("master", usersInfo.getUserId());
             }
         }
-        if(userInfo.getUserId() == null){
+        if(usersInfo.getUserId() == null){
             model.addAttribute("existSession", "notExistSession");
         }
         return "bricks/detailBrick";
     }
-    @GetMapping("/briks/brickupdate")
-    public String brickupdate(@RequestParam(value="uid") UUID uid, Model model){
-        model.addAttribute("userid", userInfo.getUserId());
+    @GetMapping("/bricks/brickupdate")
+    public String brickupdate(@RequestParam(value="uid") Long uid, Model model){
+        model.addAttribute("userid", usersInfo.getUserId());
         model.addAttribute("brickInfo", brickService.findBrickById(uid));
-        return "bricks/updateBook";
+        return "bricks/updateBrick";
     }
 
     @GetMapping("/bricks/brickSearch")
     public String bricksearch(@RequestParam(value = "sn") String search, Model model){
-        model.addAttribute("userid", userInfo.getUserId());
-        model.addAttribute("brickInfo",brickService.findBrickByType(search));
+        model.addAttribute("userid", usersInfo.getUserId());
+        model.addAttribute("brickInfo",brickService.findBrickByBrickType(search));
         return "bricks/searchBrick";
     }
 }

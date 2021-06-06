@@ -12,5 +12,5 @@ public class OrderlistMultiid implements Serializable {
 
     private Long ordersUid;
 
-    private UUID brickUid;
+    private Long brickUid;
 }

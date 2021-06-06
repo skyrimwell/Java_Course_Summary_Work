@@ -1,6 +1,5 @@
 package app.Application.Classes;
 
-import app.Application.Classes.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,19 +17,23 @@ public class Cart {
 
     @ManyToOne
     @JoinColumn(name = "USERS_ID")
-    private User user;
+    private Users users;
 
     private String createtime;
 
     private String modifytime;
 
 
+    @OneToMany(mappedBy = "cart", cascade = {CascadeType.REMOVE})
+    private List<CartOrder> cartOrders;
+
     @Builder
-    public Cart(Long uid, User user, String createtime, String modifytime){
+    public Cart(Long uid, Users users, String createtime, String modifytime, List<CartOrder> cartOrders){
         this.uid = uid;
-        this.user = user;
+        this.users = users;
         this.createtime = createtime;
         this.modifytime = modifytime;
+        this.cartOrders = cartOrders;
     }
 
     public void updateModifytime(String modifytime){

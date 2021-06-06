@@ -1,0 +1,85 @@
+{{>layout/header}}
+{{>layout/nav}}
+
+<div class="container">
+    <div class="d-flex justify-content-center mb-5">
+        <h4>Заказ</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div>
+                <table id="table" class="table table-bordered table-hover text-center">
+                    <thead>Тип кирпича</th>
+                    <th>Размер</th>
+                    <th>Цвет</th
+                    <th>Цена</th>
+                    <th>Количество</th>
+                    <th>Итог</th>
+                    </thead>
+                    <tbody>
+                    {{#brickInfo}}
+                        <tr>
+                            <td>{{brickType}}</td>
+                            <td>{{brickColor}}</td>
+                            <td class="price">{{brickPrice}}</td>
+                            <td class="count"></td>
+                            <td class="totalPrice"></td>
+                        </tr>
+                    {{/brickInfo}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="">
+                <div class="border rounded mb-3">
+                    <div class="mt-2 mb-3 d-flex justify-content-center border-bottom">
+                        <h5>Карта</h5>
+                    </div>
+                    <div>
+                        <select name="cardSelect" id="cardSelect" class="custom-select">
+                            <option value="none">Введите карту</option>
+                            {{#cardInfo}}
+                                <option value="{{id}}">{{id}} / {{type}}</option>;
+                            {{/cardInfo}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 border rounded d-flex flex-column justify-content-around">
+
+            <table id="rtable" class="mb-0 table table-bordered table-hover text-center">
+                <thead>
+                <th>Тип кирпича</th>
+                <th>Количество</th>
+                </thead>
+                <tbody>
+                {{#brickInfo}}
+                    <tr>
+                        <td>{{brickType}}</td>
+                        <td class="count1"></td>
+                    </tr>
+                {{/brickInfo}}
+                </tbody>
+            </table>
+            <div class="row d-flex justify-content-between border-bottom">
+                <div class="ml-2">
+                    <span>Итог</span>
+                </div>
+                <div class="mr-4">
+                    <strong id="totalAmount">
+                    </strong>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-between">
+                <div class="col-md-6 p-1">
+                    <button class="btn btn-outline-secondary btn-block" id="btn-addCartlistOrder">Заказать</button>
+                </div>
+            <div class="col-md-6 p-1">
+                   <button class="btn btn-outline-secondary btn-block" onclick=backLocation()>Отменить заказ</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/app/addCartlistOrder.js"></script>
+{{>layout/footer}}

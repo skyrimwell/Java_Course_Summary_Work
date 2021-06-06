@@ -19,7 +19,7 @@ import java.util.UUID;
 public class BrickService  {
     private final BrickRepository brickRepository;
     private final CartRepository cartRepository;
-    private final UserInfo usersInfo;
+    private final UsersInfo usersInfo;
 
     @Transactional
     public String saveBrick(BrickSaveDto brickSaveDto){
@@ -32,38 +32,38 @@ public class BrickService  {
     }
 
     @Transactional(readOnly = true)
-    public Brick findBrickById(UUID uid){
+    public Brick findBrickById(Long uid){
         return brickRepository.findById(uid).get();
     }
 
     @Transactional
-    public void  updateBrick(UUID bookUid, BrickUpdateDto brickUpdateDto){
-        findBrickById(bookUid).updateBrick(brickUpdateDto);
+    public void  updateBrick(Long brickUid, BrickUpdateDto brickUpdateDto){
+        findBrickById(brickUid).updateBrick(brickUpdateDto);
     }
 
     @Transactional
-    public void deleteBrick(UUID uid){
+    public void deleteBrick(Long uid){
         brickRepository.delete(findBrickById(uid));
     }
 
     @Transactional(readOnly = true)
-    public List<Brick> findBrickByType(String type){
-        return brickRepository.findBrickByType(type);
+    public List<Brick> findBrickByBrickType(String brickType){
+        return brickRepository.findBrickByBrickType(brickType);
     }
 
     @Transactional(readOnly = true)
-    public List<Brick> findBrickBySize(double size){
-        return brickRepository.findBrickBySize(size);
+    public List<Brick> findBrickByBrickSize(double brickSize){
+        return brickRepository.findBrickByBrickSize(brickSize);
     }
 
     @Transactional
-    public void updateCountBrick(List<UUID> brickUid, List<Long> count){
+    public void updateCountBrick(List<Long> brickUid, List<Long> brickCount){
         int index = 0;
-        for (UUID brickuid : brickUid) {
-            System.out.println("Book count update");
+        for (Long brickuid : brickUid) {
+            System.out.println("Brick count update");
             Brick brick = new Brick();
             brick = findBrickById(brickuid);
-            Long updateBrickCount = brick.getBrickcount() - count.get(index);
+            Long updateBrickCount = brick.getBrickCount() - brickCount.get(index);
             BrickUpdateCountDto brickUpdateCountDto = new BrickUpdateCountDto();
             brickUpdateCountDto.setBrickCount(updateBrickCount);
             findBrickById(brickuid).updateCount(brickUpdateCountDto);
@@ -71,9 +71,9 @@ public class BrickService  {
         }
     }
     @Transactional(readOnly = true)
-    public List<Brick> findBrickByArrayUid(List<UUID> brickUid){
+    public List<Brick> findBrickByArrayUid(List<Long> brickUid){
         List<Brick> arrBook = new ArrayList<Brick>();
-        for (UUID uid : brickUid) {
+        for (Long uid : brickUid) {
             arrBook.add(brickRepository.getOne(uid));
         }
         return arrBook;
