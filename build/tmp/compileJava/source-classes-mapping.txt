@@ -8,13 +8,12 @@ app/Application/Services/UsersInfo.java
  app.Application.Services.UsersInfo
 app/Application/dto/BrickUpdateCountDto.java
  app.Application.dto.BrickUpdateCountDto
-app/Application/Api/OrdersApi.java
- app.Application.Api.OrdersApi
+app/Application/dto/RegisterDto.java
+ app.Application.dto.RegisterDto
 app/Application/Api/Swagger.java
  app.Application.Api.Swagger
-app/Application/Classes/Orders.java
- app.Application.Classes.Orders
- app.Application.Classes.Orders$OrdersBuilder
+app/Application/Configuration/Config.java
+ app.Application.Configuration.Config
 app/Application/dto/OrdersSearchDto.java
  app.Application.dto.OrdersSearchDto
 app/Application/Classes/OrderlistMultiid.java
@@ -24,76 +23,73 @@ app/Application/Application.java
 app/Application/Classes/Brick.java
  app.Application.Classes.Brick
  app.Application.Classes.Brick$BrickBuilder
-app/Application/dto/CartOrderAddDto.java
- app.Application.dto.CartOrderAddDto
-app/Application/Services/UsersService.java
- app.Application.Services.UsersService
-app/Application/dto/CardInfoDto.java
- app.Application.dto.CardInfoDto
- app.Application.dto.CardInfoDto$CardInfoDtoBuilder
-app/Application/Controllers/BrickController.java
- app.Application.Controllers.BrickController
-app/Application/dto/OrderlistAddDto.java
- app.Application.dto.OrderlistAddDto
-app/Application/Classes/Users.java
- app.Application.Classes.Users
- app.Application.Classes.Users$UsersBuilder
-app/Application/Interfaces/CartRepository.java
- app.Application.Interfaces.CartRepository
+app/Application/dto/BrickDeleteDto.java
+ app.Application.dto.BrickDeleteDto
+app/Application/dto/BrickInfoDto.java
+ app.Application.dto.BrickInfoDto
+app/Application/Interfaces/OrderlistRepository.java
+ app.Application.Interfaces.OrderlistRepository
+app/Application/Misc/UserAlreadyExists.java
+ app.Application.Misc.UserAlreadyExists
+app/Application/Interfaces/OrdersRepository.java
+ app.Application.Interfaces.OrdersRepository
+app/Application/dto/CartOrderUpdateModifytimeDto.java
+ app.Application.dto.CartOrderUpdateModifytimeDto
+app/Application/Misc/PasswordEncoding.java
+ app.Application.Misc.PasswordEncoding
 app/Application/Interfaces/BrickRepository.java
  app.Application.Interfaces.BrickRepository
-app/Application/Services/CartOrderService.java
- app.Application.Services.CartOrderService
-app/Application/Classes/Orderlist.java
- app.Application.Classes.Orderlist
- app.Application.Classes.Orderlist$OrderlistBuilder
+app/Application/Misc/MultiId.java
+ app.Application.Misc.MultiId
+app/Application/dto/BrickSaveDto.java
+ app.Application.dto.BrickSaveDto
+ app.Application.dto.BrickSaveDto$BrickSaveDtoBuilder
 app/Application/Interfaces/CardRepository.java
  app.Application.Interfaces.CardRepository
-app/Application/Services/BrickService.java
- app.Application.Services.BrickService
-app/Application/Services/OrdersService.java
- app.Application.Services.OrdersService
+app/Application/Api/ApiResponse.java
+ app.Application.Api.ApiResponse
+app/Application/Interfaces/CartOrderRepository.java
+ app.Application.Interfaces.CartOrderRepository
 app/Application/Classes/Card.java
  app.Application.Classes.Card
  app.Application.Classes.Card$CardBuilder
 app/Application/dto/CartOrderDeleteDto.java
  app.Application.dto.CartOrderDeleteDto
-app/Application/Interfaces/CartOrderRepository.java
- app.Application.Interfaces.CartOrderRepository
 app/Application/dto/UsersUpDto.java
  app.Application.dto.UsersUpDto
  app.Application.dto.UsersUpDto$UsersUpDtoBuilder
 app/Application/dto/CartUpdateDto.java
  app.Application.dto.CartUpdateDto
-app/Application/Misc/MultiId.java
- app.Application.Misc.MultiId
+app/Application/Api/OrdersApi.java
+ app.Application.Api.OrdersApi
+app/Application/Classes/User.java
+ app.Application.Classes.User
+ app.Application.Classes.User$UserBuilder
 app/Application/Interfaces/UsersRepository.java
  app.Application.Interfaces.UsersRepository
-app/Application/Misc/PasswordEncoding.java
- app.Application.Misc.PasswordEncoding
-app/Application/Api/ApiResponse.java
- app.Application.Api.ApiResponse
-app/Application/Api/UsersApi.java
- app.Application.Api.UsersApi
-app/Application/dto/BrickDeleteDto.java
- app.Application.dto.BrickDeleteDto
-app/Application/dto/CartOrderUpdateModifytimeDto.java
- app.Application.dto.CartOrderUpdateModifytimeDto
-app/Application/Interfaces/OrdersRepository.java
- app.Application.Interfaces.OrdersRepository
-app/Application/Interfaces/OrderlistRepository.java
- app.Application.Interfaces.OrderlistRepository
+app/Application/Api/CartOrderApi.java
+ app.Application.Api.CartOrderApi
+app/Application/dto/CartOrderAddDto.java
+ app.Application.dto.CartOrderAddDto
+app/Application/Services/UsersService.java
+ app.Application.Services.UsersService
 app/Application/dto/CartCreateDto.java
  app.Application.dto.CartCreateDto
+app/Application/dto/CardInfoDto.java
+ app.Application.dto.CardInfoDto
+ app.Application.dto.CardInfoDto$CardInfoDtoBuilder
+app/Application/Controllers/BrickController.java
+ app.Application.Controllers.BrickController
 app/Application/Controllers/UsersController.java
  app.Application.Controllers.UsersController
 app/Application/Classes/CartOrder.java
  app.Application.Classes.CartOrder
  app.Application.Classes.CartOrder$CartOrderBuilder
-app/Application/Misc/UserAlreadyExists.java
- app.Application.Misc.UserAlreadyExists
-app/Application/dto/BrickInfoDto.java
- app.Application.dto.BrickInfoDto
+app/Application/Classes/Order.java
+ app.Application.Classes.Order
+ app.Application.Classes.Order$OrderBuilder
+app/Application/dto/OrderlistAddDto.java
+ app.Application.dto.OrderlistAddDto
 app/Application/dto/OrdersCreateDto.java
  app.Application.dto.OrdersCreateDto
 app/Application/Classes/Cart.java
@@ -101,15 +97,21 @@ app/Application/Classes/Cart.java
  app.Application.Classes.Cart$CartBuilder
 app/Application/Api/BrickApi.java
  app.Application.Api.BrickApi
-app/Application/dto/RegisterDto.java
- app.Application.dto.RegisterDto
-app/Application/dto/BrickSaveDto.java
- app.Application.dto.BrickSaveDto
- app.Application.dto.BrickSaveDto$BrickSaveDtoBuilder
+app/Application/Interfaces/CartRepository.java
+ app.Application.Interfaces.CartRepository
+app/Application/Api/UsersApi.java
+ app.Application.Api.UsersApi
+app/Application/Services/CartOrderService.java
+ app.Application.Services.CartOrderService
+app/Application/Classes/Orderlist.java
+ app.Application.Classes.Orderlist
+ app.Application.Classes.Orderlist$OrderlistBuilder
 app/Application/dto/UsersInDto.java
  app.Application.dto.UsersInDto
  app.Application.dto.UsersInDto$UsersInDtoBuilder
-app/Application/Api/CartOrderApi.java
- app.Application.Api.CartOrderApi
 app/Application/Controllers/OrdersController.java
  app.Application.Controllers.OrdersController
+app/Application/Services/BrickService.java
+ app.Application.Services.BrickService
+app/Application/Services/OrdersService.java
+ app.Application.Services.OrdersService

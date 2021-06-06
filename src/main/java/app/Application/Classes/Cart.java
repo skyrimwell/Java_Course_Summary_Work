@@ -17,7 +17,7 @@ public class Cart {
 
     @ManyToOne
     @JoinColumn(name = "USERS_ID")
-    private Users users;
+    private User users;
 
     private String createtime;
 
@@ -28,7 +28,7 @@ public class Cart {
     private List<CartOrder> cartOrders;
 
     @Builder
-    public Cart(Long uid, Users users, String createtime, String modifytime, List<CartOrder> cartOrders){
+    public Cart(Long uid, User users, String createtime, String modifytime, List<CartOrder> cartOrders){
         this.uid = uid;
         this.users = users;
         this.createtime = createtime;

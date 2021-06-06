@@ -1,7 +1,7 @@
 package app.Application.dto;
 
 import app.Application.Classes.Cart;
-import app.Application.Classes.Users;
+import app.Application.Classes.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CartCreateDto {
-    private Users users;
+    private User users;
     private String createtime;
     private String modifytime;
 

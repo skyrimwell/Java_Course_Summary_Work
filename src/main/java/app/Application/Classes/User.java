@@ -1,5 +1,4 @@
 package app.Application.Classes;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,10 +21,23 @@ public class User implements Serializable {
     private String pw;
 
     private String name;
+
+    @OneToMany(mappedBy = "users", cascade = {CascadeType.REMOVE})
+    private List<Card> card;
+
+    @OneToMany(mappedBy = "users", cascade = {CascadeType.REMOVE})
+    private List<Cart> cart;
+
+    @OneToMany(mappedBy = "users", orphanRemoval = true)
+    private List<Order> orders;
+
     @Builder
-    public User(String id, String pw, String name){
+    public User(String id, String pw, String name, List<Card> card, List<Cart> cart, List<Order> orders){
         this.id = id;
         this.pw = pw;
         this.name = name;
+        this.card = card;
+        this.cart = cart;
+        this.orders = orders;
     }
 }

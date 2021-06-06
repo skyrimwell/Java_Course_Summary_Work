@@ -1,5 +1,5 @@
 package app.Application.dto;
-import app.Application.Classes.Users;
+import app.Application.Classes.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,8 +20,8 @@ public class UsersUpDto {
         this.name = name;
     }
 
-    public Users toEntity(){
-        return Users.builder()
+    public User toEntity(){
+        return User.builder()
                 .id(id).pw(pw).name(name).build();
     }
 }

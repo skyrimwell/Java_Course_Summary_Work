@@ -6,7 +6,7 @@ import app.Application.Interfaces.UsersRepository;
 import app.Application.Classes.Card;
 import org.springframework.stereotype.Service;
 import app.Application.dto.CardInfoDto;
-import app.Application.Classes.Users;
+import app.Application.Classes.User;
 import app.Application.dto.UsersUpDto;
 import app.Application.dto.UsersInDto;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +21,7 @@ public class UsersService {
     PasswordEncoding passwordEncoding = new PasswordEncoding();
 
     @Transactional(readOnly = true)
-    public Users findUsers(UsersInfo usersInfo){
+    public User findUsers(UsersInfo usersInfo){
         return usersRepository.findById(usersInfo.getUserId()).get();
     }
 

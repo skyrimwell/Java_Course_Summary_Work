@@ -17,14 +17,14 @@ public class Card {
 
     @ManyToOne
     @JoinColumn(name = "USERS_ID")
-    private Users users;
+    private User users;
 
     private String datetime;
 
     private String type;
 
     @Builder
-    public Card(String id, Users users, String datetime, String type){
+    public Card(String id, User users, String datetime, String type){
         this.id = id;
         this.users = users;
         this.datetime = datetime;

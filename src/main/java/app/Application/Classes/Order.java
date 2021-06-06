@@ -1,7 +1,5 @@
 package app.Application.Classes;
 
-import app.Application.Classes.User;
-import app.Application.Classes.Orderlist;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +18,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "USERS_ID")
-    private User user;
+    private User users;
 
     private String date;
 
@@ -32,22 +30,20 @@ public class Order {
 
     private String cardDate;
 
-    private Long shippingNum;
-
-    @OneToMany(mappedBy = "order", orphanRemoval = true)
-    private List<Orderlist> orderlist;
+    @OneToMany(mappedBy = "orders", orphanRemoval = true)
+    private List<Orderlist> orderlists;
 
 
     @Builder
-    public Order(Long uid, User user, String date, Long amount, String cardId, String cardType, String cardDate, List<Orderlist> orderlist){
+    public Order(Long uid, User users, String date, Long amount, String cardId, String cardType, String cardDate, List<Orderlist> orderlists){
         this.uid= uid;
-        this.user = user;
+        this.users = users;
         this.date = date;
         this.amount = amount;
         this.cardId = cardId;
         this.cardType = cardType;
         this.cardDate= cardDate;
-        this.orderlist = orderlist;
+        this.orderlists = orderlists;
     }
 
 }

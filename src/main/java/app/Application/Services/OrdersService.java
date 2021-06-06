@@ -1,11 +1,11 @@
 package app.Application.Services;
 import app.Application.Classes.Brick;
 import app.Application.Classes.Card;
-import app.Application.Classes.Orders;
+import app.Application.Classes.Order;
 import app.Application.Interfaces.OrdersRepository;
 import app.Application.Interfaces.OrderlistRepository;
 import app.Application.Classes.OrderlistMultiid;
-import app.Application.Classes.Users;
+import app.Application.Classes.User;
 import app.Application.dto.OrdersCreateDto;
 import app.Application.dto.OrdersSearchDto;
 import app.Application.dto.OrderlistAddDto;
@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -49,7 +48,7 @@ public class OrdersService {
         Card card = new Card();
         card = userService.findCardByCardId(cardId);
 
-        Users users = userService.findUsers(usersInfo);
+        User users = userService.findUsers(usersInfo);
 
         OrdersCreateDto ordersCreateDto = new OrdersCreateDto();
         ordersCreateDto.setUsers(users);
@@ -65,7 +64,7 @@ public class OrdersService {
         int index = 0;
         for (Long brickuid : brickUid) {
             System.out.println(brickUid +"asdasd"+ count);
-            Orders lastAddOrders = new Orders();
+            Order lastAddOrders = new Order();
             lastAddOrders = lastAddOrder();
 
             Brick brick = new Brick();
@@ -86,15 +85,15 @@ public class OrdersService {
         }
     }
     @Transactional(readOnly = true)
-    public Orders lastAddOrder(){
+    public Order lastAddOrder(){
         return ordersRepository.findAllByOrderByUidDesc().get(0);
     }
 
     @Transactional(readOnly = true)
     public List<OrdersSearchDto> orderSearch(){
         List<OrdersSearchDto> ordersSearchDto = new ArrayList<OrdersSearchDto>();
-        List<Orders> orders = ordersRepository.findAllByUsers_Id(usersInfo.getUserId());
-        for (Orders order : orders) {
+        List<Order> orders = ordersRepository.findAllByUsers_Id(usersInfo.getUserId());
+        for (Order order : orders) {
             OrdersSearchDto osd = new OrdersSearchDto();
             osd.setOrderDate(order.getDate());
             osd.setBrickPrice(order.getAmount());

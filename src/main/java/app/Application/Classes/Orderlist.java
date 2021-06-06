@@ -20,7 +20,7 @@ public class Orderlist implements Serializable {
     @MapsId("ordersUid")
     @ManyToOne
     @JoinColumn(name = "ORDERS_UID")
-    private Orders orders;
+    private Order orders;
 
 
     @MapsId("brickUid")
@@ -29,7 +29,7 @@ public class Orderlist implements Serializable {
     private Brick brick;
 
     @Builder
-    public Orderlist(OrderlistMultiid orderlistMultiid, Long count, Orders orders, Brick brick){
+    public Orderlist(OrderlistMultiid orderlistMultiid, Long count, Order orders, Brick brick){
         this.orderlistMultiid = orderlistMultiid;
         this.count = count;
         this.orders = orders;

@@ -3,8 +3,8 @@ package app.Application.Interfaces;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import app.Application.Classes.Users;
+import app.Application.Classes.User;
 
 @Repository
-public interface UsersRepository extends JpaRepository<Users, String> {
+public interface UsersRepository extends JpaRepository<User, String> {
 }

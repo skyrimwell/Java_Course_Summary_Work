@@ -1,6 +1,6 @@
 package app.Application.dto;
-import app.Application.Classes.Orders;
-import app.Application.Classes.Users;
+import app.Application.Classes.Order;
+import app.Application.Classes.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class OrdersCreateDto {
-    private Users users;
+    private User users;
 
     private String date;
 
@@ -21,8 +21,8 @@ public class OrdersCreateDto {
 
     private String cardDate;
 
-    public Orders toEntity(){
-        return Orders.builder()
+    public Order toEntity(){
+        return Order.builder()
                 .users(users)
                 .date(date)
                 .amount(amount)

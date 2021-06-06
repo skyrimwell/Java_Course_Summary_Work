@@ -1,6 +1,6 @@
 package app.Application.dto;
 import app.Application.Classes.Brick;
-import app.Application.Classes.Orders;
+import app.Application.Classes.Order;
 import app.Application.Classes.Orderlist;
 import app.Application.Classes.OrderlistMultiid;
 import lombok.Getter;
@@ -15,7 +15,7 @@ public class OrderlistAddDto {
 
     private Long count;
 
-    private Orders orders;
+    private Order orders;
 
     private Brick brick;
 
